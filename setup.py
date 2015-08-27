@@ -36,5 +36,6 @@ setup(
         'django >= 1.6',
         'pytz',
         'six >= 1.9, <  2.0',
+        'django-ckeditor',
     ],
 )

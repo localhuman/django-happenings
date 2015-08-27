@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
-
+from ckeditor.fields import RichTextField
 
 class Migration(migrations.Migration):
 
@@ -44,7 +44,7 @@ class Migration(migrations.Migration):
                 ('repeat', models.CharField(default='NEVER', max_length=15, verbose_name='repeat', choices=[('NEVER', 'Never'), ('DAILY', 'Every Day'), ('WEEKDAY', 'Every Weekday'), ('WEEKLY', 'Every Week'), ('BIWEEKLY', 'Every 2 Weeks'), ('MONTHLY', 'Every Month'), ('YEARLY', 'Every Year')])),
                 ('end_repeat', models.DateField(null=True, verbose_name='end repeat', blank=True)),
                 ('title', models.CharField(max_length=255, verbose_name='title')),
-                ('description', models.TextField(verbose_name='description')),
+                ('description',RichTextField(max_length=32768, blank=True,null=True)),
                 ('background_color', models.CharField(default='eeeeee', max_length=10, verbose_name='background color', choices=[('eeeeee', 'gray'), ('ff0000', 'red'), ('0000ff', 'blue'), ('00ff00', 'green'), ('000000', 'black'), ('ffffff', 'white')])),
                 ('background_color_custom', models.CharField(help_text='Must be a valid hex triplet. Default is gray (eeeeee)', max_length=6, verbose_name='background color custom', blank=True)),
                 ('font_color', models.CharField(default='000000', max_length=10, verbose_name='font color', choices=[('eeeeee', 'gray'), ('ff0000', 'red'), ('0000ff', 'blue'), ('00ff00', 'green'), ('000000', 'black'), ('ffffff', 'white')])),
@@ -70,6 +70,7 @@ class Migration(migrations.Migration):
                 ('city', models.CharField(max_length=63, verbose_name='City / Town', blank=True)),
                 ('zipcode', models.CharField(max_length=31, verbose_name='ZIP / Postal Code', blank=True)),
                 ('country', models.CharField(max_length=127, verbose_name='Country', blank=True)),
+                ('description',RichTextField(max_length=32768, blank=True,null=True)),
             ],
             options={
             },

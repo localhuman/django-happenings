@@ -12,6 +12,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 
+from ckeditor.fields import RichTextField
 
 from .managers import EventManager
 
@@ -54,7 +55,7 @@ class Event(models.Model):
     )
     end_repeat = models.DateField(_("end repeat"), null=True, blank=True)
     title = models.CharField(_("title"), max_length=255)
-    description = models.TextField(_("description"))
+    description = RichTextField(max_length=32768, blank=True,null=True)
     location = models.ManyToManyField(
         'Location', verbose_name=_('locations'), blank=True
     )
@@ -308,6 +309,8 @@ class Location(models.Model):
     zipcode = models.CharField(
         _('ZIP / Postal Code'), max_length=31, blank=True)
     country = models.CharField(_('Country'), max_length=127, blank=True)
+
+    description = RichTextField(max_length=32768, blank=True,null=True)
 
     def __str__(self):
         return self.name
